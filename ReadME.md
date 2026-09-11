@@ -204,28 +204,8 @@ Microsoft documents that CredSSP does not cache a signed-in Protected Users memb
 - Treat authorized CredSSP destinations as systems that may receive reusable credentials, regardless of whether the Windows server-side API later wraps those credentials.
 - Do not treat endpoint detection as a substitute for restrictive credential-delegation policy.
 
-# 7\. Telemetry Research Plan
 
-Telemetry testing remains future work. The goal is to identify durable operating-system observation points rather than produce a vendor ranking. Results should distinguish prevention, logging, ETW visibility, network observability, and product-specific alerting.
-
-| **Activity**                  | **Privilege**            | **LSASS memory** | **Windows API path** | **Network artifact** | **Telemetry status** |
-| ----------------------------- | ------------------------ | ---------------- | -------------------- | -------------------- | -------------------- |
-| LSASS dump                    | Elevated                 | Direct           | Process access       | None expected        | TBD                  |
-| klist query                   | Context-dependent        | No direct read   | Kerberos APIs        | Usually none         | TBD                  |
-| Offline LSA-secret extraction | Elevated                 | No               | Registry/filesystem  | None                 | TBD                  |
-| CredSSP via mstsc.exe         | No special gate observed | No direct read   | CredSSP/SSPI         | Yes                  | TBD                  |
-| CredSSP via custom tooling    | No special gate observed | No direct read   | CredSSP/SSPI         | Yes                  | TBD                  |
-
-# 8\. Limitations and Future Work
-
-- The tested operating-system builds, patch levels, and policy states must be listed in the publication version.
-- The Kerberos conclusion should be accompanied by a complete permutation matrix and packet evidence.
-- NTLM-only CredSSP behavior was not characterized to the same depth in this draft.
-- The Windows server-side protected credential behavior does not establish behavior for third-party implementations.
-- Telemetry, ETW, and event-log results remain to be collected.
-- The harness should be reviewed for safe defaults and release scope before publication.
-
-# 9\. Responsible Tool Release Considerations
+# 7\. Responsible Tool Release Considerations
 
 The harness has legitimate reproducibility and defensive research value because it demonstrates protocol behavior independently of mstsc.exe. A public release should make the research easier to validate without unnecessarily packaging credential recovery as a turnkey capability.
 
