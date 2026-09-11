@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="CredSSP2.vcxproj" Id="cb4978be-b693-498e-a02b-11ab65c78827" />
+</Solution>
